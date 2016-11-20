@@ -39,15 +39,18 @@ let PersonSchema = new mongoose.Schema({
 // 再根据schema定义模型
 let PersonModel = mongoose.model('Person', PersonSchema);
 
+
 // create可以保存一个文档，保存之后会把保存后的文档传给回调的result参数
-// PersonModel.create({
-//     name: '张三',
-//     birthday: new Date(),
-//     gender: '男',
-//     home: '北京'     // Schema中不存在，就过滤这个字段
-// }, function(error, result){
-//     console.log(result);
-// });
+
+/*
+PersonModel.create({
+    name: '张三',
+    birthday: new Date(),
+    gender: '男',
+    home: '北京'     // Schema中不存在，就过滤这个字段
+}, function(error, result){
+    console.log(result);
+});
 
 PersonModel.create({
     name: '李四',
@@ -56,3 +59,76 @@ PersonModel.create({
 }, function(error, result){
     console.log(result);
 });
+*/
+
+// find 查找
+/*
+PersonModel.find({
+    name: '张三'    //按条件查
+}, function(error, data){
+    console.log(data);
+});
+
+PersonModel.find({}, function(error, data){  //查所有
+    console.log(data);
+});
+ */
+
+// update 修改
+/**
+ * 参数1 更新的条件或者范围
+ * 参数2 更新的字段
+ * 参数3 callback
+ */
+
+// 修改匹配到的第一条记录
+/*
+PersonModel.update({
+    name: '张三'
+}, {
+    gender: '女'
+}, function(error, result){
+    console.log(result);
+});
+
+// 修改匹配到的所有记录
+PersonModel.update({
+    name: '张三'
+}, {
+    gender: '女'
+}, {
+    multi: true
+}, function(error, result){
+    console.log(result);    // { ok: 1(1成功 0失败), nModified: 2(修改了几条), n: 4(匹配的记录)}
+});
+*/
+
+// remove 删除文档
+/**
+ * 参数1 删除的条件或者范围
+ */
+/*
+PersonModel.remove({name: '李四'}, function (error, result) {
+    console.log(result.result);   // { ok: 1, n: 1 }
+});
+
+//删除全部
+PersonModel.remove({}, function (error, result) {
+    console.log(result.result);   // { ok: 1, n: 4 }
+});
+ */
+
+
+// 准备数据
+
+// var persons = [];
+// for(let i = 0; i < 10; i++){
+//     persons.push({ gender:"女" + i, name: 'zr' + i });
+// }
+// PersonModel.create(persons, function(error,docs) {
+//     if(error) {
+//         console.log(error);
+//     } else {
+//         console.log('save ok');
+//     }
+// });
